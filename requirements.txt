@@ -1,0 +1,15 @@
+pandas
+openpyxl
+streamlit
+langchain
+langchain-openai
+python-dotenv
+numpy
+matplotlib
+seaborn
+fuzzywuzzy
+python-Levenshtein
+openai
+plotly
+langchain-community
+xlrd
