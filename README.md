@@ -1,75 +1,96 @@
-# Excel Sheet Agent
+# Intelligent Excel Agent
 
-An intelligent agent built with LangChain that processes Excel files and understands natural language queries.
+An intelligent Excel agent built with LangChain, Streamlit, and OpenAI that processes large Excel files, understands natural language queries, and handles production scenarios including inconsistent column naming and edge cases.
 
 ## Features
 
-- Process large Excel files (10,000+ rows)
-- Support for multiple worksheets
-- Natural language query processing
-- Intelligent column name mapping with fuzzy matching
-- Data filtering, aggregation, and pivoting
-- Visualization capabilities
-- Streamlit user interface
+- **Large File & Multi-Tab Handling**
+  - Support for 10,000+ rows and multiple worksheets
+  - Memory-efficient chunking strategies
+  - Handles different data types and worksheet navigation
+
+- **Natural Language Processing**
+  - Integrates with OpenAI's LLM to interpret user queries
+  - Generates data operations from natural language
+  - Supports complex analysis (filtering, aggregations, pivoting)
+
+- **Column Name Mapping**
+  - Handles different naming conventions (snake_case, camelCase, "Proper Case")
+  - Supports synonyms ("qty" vs "quantity", "amt" vs "amount")
+  - Fuzzy matching algorithm for column names
+
+- **Production Edge Cases**
+  - Handles corrupted files, merged cells, memory limits
+  - Manages inconsistent data types, missing values, date format inconsistencies
+  - Processes ambiguous queries and non-existent columns
 
 ## Installation
 
+1. Clone this repository:
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/Excel_Sheet_Agent.git
-cd Excel_Sheet_Agent
+git clone <repository-url>
+cd excel-sheet-agent
+```
 
-# Create a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+2. Install dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-## Configuration
+3. Set up environment variables:
+```bash
+cp .env.example .env
+```
 
-Create a `.env` file in the root directory with your OpenAI API key:
-
+4. Edit `.env` file and add your OpenAI API key:
 ```
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 ## Usage
 
-Run the Streamlit application:
-
+1. Run the Streamlit app:
 ```bash
 streamlit run app.py
 ```
 
-Then:
-1. Upload your Excel file
-2. Ask questions in natural language
-3. View the results and visualizations
+2. Open your browser and navigate to the provided URL (usually http://localhost:8501)
+
+3. Enter your OpenAI API key in the sidebar
+
+4. Upload an Excel file
+
+5. Start asking questions about your data!
 
 ## Example Queries
 
-- "Show me the total sales by region"
-- "What was the average revenue in Q3?"
-- "Create a bar chart of top 5 products by profit"
-- "Filter data where sales are greater than 10000"
-- "Pivot the data to show product categories by quarter"
+- "Show sales data for Q3 2024 where revenue > 50000"
+- "Create pivot table showing total sales by region and product"
+- "Find customers who haven't ordered in 6 months"
+- "What are the top 5 products by sales volume?"
+- "Show me a summary of revenue by month"
 
 ## Project Structure
 
-- `app.py`: Streamlit interface
-- `excel_reader.py`: Functions for reading and processing Excel files
-- `column_mapper.py`: Intelligent column name mapping
-- `data_operations.py`: Data filtering, aggregation, and pivoting
-- `nlp_processor.py`: Natural language query processing
-- `visualization.py`: Chart generation functions
-- `langchain_tools.py`: LangChain tool definitions
+- `app.py`: Streamlit interface for the Excel agent
+- `excel_processor.py`: Core Excel processing functions
+- `langchain_tools.py`: LangChain tools for Excel operations
+- `requirements.txt`: Required Python packages
 
-## Requirements
+## Technical Details
 
-See `requirements.txt` for a complete list of dependencies.
+- Handles files up to 100MB
+- Processes queries within 10 seconds
+- Supports concurrent users
+- Implements security measures (input validation, file scanning)
 
 ## License
 
-MIT 
+MIT
+
+## Acknowledgements
+
+- [LangChain](https://github.com/langchain-ai/langchain) for the agent framework
+- [Streamlit](https://streamlit.io/) for the web interface
+- [OpenAI](https://openai.com/) for the language model
+- [Pandas](https://pandas.pydata.org/) for data processing 

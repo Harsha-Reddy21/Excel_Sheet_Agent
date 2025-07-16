@@ -1,4 +1,5 @@
+env
+.env 
 myenv
 myenv/
-.env
-env
+temp
