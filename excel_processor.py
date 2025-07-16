@@ -17,16 +17,16 @@ def read_excel_file(file_path: str) -> Dict[str, pd.DataFrame]:
         Dictionary with sheet names as keys and pandas DataFrames as values
     """
     try:
-        # Use low_memory option and chunk reading for large files
+        # Create ExcelFile object without specifying engine - pandas will choose appropriate one
         excel_file = pd.ExcelFile(file_path)
         sheets = {}
         
         for sheet_name in excel_file.sheet_names:
-            # Read in chunks to handle large files
+            # Read sheet without specifying engine again - use the one from ExcelFile
             df = pd.read_excel(
                 excel_file, 
-                sheet_name=sheet_name,
-                engine='openpyxl'
+                sheet_name=sheet_name
+                # Don't specify engine here - it's already set in ExcelFile
             )
             sheets[sheet_name] = df
             
